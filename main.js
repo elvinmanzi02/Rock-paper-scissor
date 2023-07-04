@@ -3,6 +3,7 @@
 // 2 function(parameter1, parameter2) with player selection and computer selection and will return "You lose! paper beats Rock"
 // 2 game function
 
+// function one that let computer selects 
 
 function getComputerChoice(min = 1, max = 3) {
     const result = Math.floor(Math.random()*(max-min + 1)) + min;
@@ -15,6 +16,8 @@ function getComputerChoice(min = 1, max = 3) {
     }
 }
 const computerSelector = getComputerChoice();
+
+// function two that that decide who wins
 
 function roundSeletor(playerSelector, computerSelector) {
     if (playerSelector === "rock") {
@@ -48,10 +51,4 @@ function roundSeletor(playerSelector, computerSelector) {
 
 const playerChoice = "Rock";
 const playerSelector = playerChoice.toLowerCase();
-
-function game() {
-    for(let i = 1; i <= 5; i++) {
-        
-        roundSeletor(playerSelector, computerSelector);
-    }
-}
+console.log (roundSeletor(playerSelector, computerSelector));
