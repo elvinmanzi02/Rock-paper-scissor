@@ -58,9 +58,10 @@ game(playerChoice);
 let round = 1;
 
 while (playerScore < 5 && computerScore < 5) {
-    let playerChoice1 = prompt("Enter Rock, Paper, or Scissor: ");
-    let playerChoice = playerChoice1.charAt(0).toUpperCase() + playerChoice1.slice(1).toLowerCase();
+    playerChoice1 = prompt("Enter Rock, Paper, or Scissor: ");
+    playerChoice = playerChoice1.charAt(0).toUpperCase() + playerChoice1.slice(1).toLowerCase();
     game(playerChoice);
+    
     round++;
 }
 
@@ -70,4 +71,4 @@ if (playerScore === computerScore) {
     console.log("Congratulations! You won the game! 5/5 scores");
 } else {
     console.log(`Sorry, you lose the game! ${playerScore}/5 scores`);
-}   
+} 
