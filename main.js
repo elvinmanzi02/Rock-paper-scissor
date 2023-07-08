@@ -37,6 +37,16 @@ function determineWinner(playerChoice, computerChoice) {
 
 function game(playerChoice) {
 
+    // Checking invalid choices.
+
+    const validChoice = ["Rock","Scissor","Paper"];
+    if(!validChoice.includes(playerChoice)) {
+        console.log("Invalid input. please Enter Rock, Paper or Scissor!!!");
+        return;
+    }
+
+    // Console log section.
+
     const computerChoice = getComputerChoice();
     const result = determineWinner(playerChoice, computerChoice);
     
@@ -53,6 +63,7 @@ function game(playerChoice) {
 // 4 using while loop to iterate until score be 5 points
 
 let round = 1;
+
 
 while (playerScore < 5 && computerScore < 5) {
 
