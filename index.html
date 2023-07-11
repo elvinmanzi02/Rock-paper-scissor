@@ -3,10 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>www.rockpaperscissor.com</title>
+    <title>Rock Paper Scissor Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <script src="main.js"></script>
+    <div class="header">
+        <h1>Rock Paper Scissor Game</h1>
+        <p>Welcome to the game!</p>
+    </div>
+    <div class="imgContainer">
+        <button id="paperBtn">
+            <figure>
+                <img src="images/paper.jpg" alt="" class="paper imgItem">
+                <figcaption>Paper</figcaption>
+            </figure>
+        </button>
+        <button id="rockBtn">
+            <figure>
+                <img src="images/rock.jpg" alt="" class="rock imgItem">
+                <figcaption>Rock</figcaption>
+            </figure>
+        </button>
+        <button id="scissorBtn">
+            <figure>
+                <img src="images/scissor.jpg" alt="" class="scissor imgItem">
+                <figcaption>Scissor</figcaption>
+            </figure>
+        </button>
+    </div>
+    <div class="footer">
+        <p id="playerScoreDisplay" style="color: white;">Player Score: 0</p>
+        <p id="computerScoreDisplay" style="color: white;">Computer Score: 0</p>
+        <p class="winner" style="color: white;"></p>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>

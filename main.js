@@ -1,10 +1,4 @@
-// 1 create funtion to get computer choice
-// 2 create function to determine winner
-// 3 create function to play game
-// 4 using while loop to iterate until score be 5 points
-// 5 using if clause to determine someone who win the game 
-
-// 1 create funtion to get computer choice
+// 1. Create a function to get the computer's choice
 
 function getComputerChoice() {
     const choices = ["Rock", "Paper", "Scissor"];
@@ -12,7 +6,7 @@ function getComputerChoice() {
     return choices[randomIndex];
 }
 
-// 2 create function to determine winner
+// 2. Create a function to determine the winner
 
 let playerScore = 0;
 let computerScore = 0;
@@ -33,53 +27,89 @@ function determineWinner(playerChoice, computerChoice) {
     }
 }
 
-// 3 create function to play game
+// 3. Create a function to update the score display
 
-function game(playerChoice) {
+function updateScoreDisplay() {
+    const playerScoreDisplay = document.getElementById("playerScoreDisplay");
+    const computerScoreDisplay = document.getElementById("computerScoreDisplay");
+    playerScoreDisplay.textContent = `Player Score: ${playerScore}`;
+    computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+}
 
-    // Checking invalid choices.
+// 4. Create a function to play the game
 
-    const validChoice = ["Rock","Scissor","Paper"];
-    if(!validChoice.includes(playerChoice)) {
-        console.log("Invalid input. please Enter Rock, Paper or Scissor!!!");
+function playGame(playerChoice) {
+    const validChoice = ["Rock", "Scissor", "Paper"];
+    if (!validChoice.includes(playerChoice)) {
+        const winnerDisplay = document.querySelector(".winner");
+        winnerDisplay.textContent = "Invalid input. Please enter Rock, Paper, or Scissor!";
         return;
     }
 
-    // Console log section.
-
     const computerChoice = getComputerChoice();
     const result = determineWinner(playerChoice, computerChoice);
-    
-    console.clear();
-    
-    console.log(`Player choice: ${playerChoice}`);
-    console.log(`Computer choice: ${computerChoice}`);
-    console.log(`Player score: ${playerScore}`);
-    console.log(`Computer score: ${computerScore}`);
-    console.log(result);
-    console.log("--------------------");
+    const winnerDisplay = document.querySelector(".winner");
+    winnerDisplay.textContent = result;
+
+    updateScoreDisplay();
+
+    if (playerScore === 5 || computerScore === 5) {
+        endGame();
+    }
 }
 
-// 4 using while loop to iterate until score be 5 points
+// 5. Create a function to end the game
 
-let round = 1;
+function endGame() {
+    const resultDisplay = document.getElementById("resultsDisplay");
+    if (playerScore === computerScore) {
+        resultDisplay.textContent = "Game over, it's a draw";
+    } else if (playerScore > computerScore) {
+        resultDisplay.textContent = "Congratulations! You win the game!";
+    } else {
+        resultDisplay.textContent = "Sorry, you lose the game!";
+    }
 
-
-while (playerScore < 5 && computerScore < 5) {
-
-    let playerChoice1 = prompt("Enter Rock, Paper, or Scissor: ");
-    let playerChoice = playerChoice1.charAt(0).toUpperCase() + playerChoice1.slice(1).toLowerCase();
-    game(playerChoice);
-
-    round++;
+    // Disable the buttons to prevent further gameplay
+    const buttons = document.querySelectorAll(".imgContainer button");
+    buttons.forEach(button => {
+        button.disabled = true;
+    });
 }
 
-// 5 using if clause to determine someone who win the game
+// Event Listeners
 
-if (playerScore === computerScore) {
-    console.log("Game over, it's a draw");
-} else if (playerScore > computerScore) {
-    console.log("Congratulations! You win the game!");
-} else {
-    console.log("Sorry, you lose the game!");
-}
+const rockBtn = document.querySelector("#rockBtn");
+rockBtn.addEventListener("click", () => {
+    playGame("Rock");
+});
+
+const paperBtn = document.querySelector("#paperBtn");
+paperBtn.addEventListener("click", () => {
+    playGame("Paper");
+});
+
+const scissorBtn = document.querySelector("#scissorBtn");
+scissorBtn.addEventListener("click", () => {
+    playGame("Scissor");
+});
+
+// Wait for the DOM to finish loading
+document.addEventListener("DOMContentLoaded", function() {
+    // Event Listeners
+    const rockBtn = document.querySelector("#rockBtn");
+    rockBtn.addEventListener("click", () => {
+        playGame("Rock");
+    });
+  
+    const paperBtn = document.querySelector("#paperBtn");
+    paperBtn.addEventListener("click", () => {
+        playGame("Paper");
+    });
+  
+    const scissorBtn = document.querySelector("#scissorBtn");
+    scissorBtn.addEventListener("click", () => {
+        playGame("Scissor");
+    });
+  });
+  
