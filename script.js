@@ -58,22 +58,13 @@ function determineWinner(playerChoice, computerChoice) {
 function resetScores() {
     playerScore = 0;
     computerScore = 0;
-    updateScore();
 }
 
 // function 4, update score
 
 function updateScore() {
     playerScoreDisplay.textContent = `Player Score: ${playerScore}`;
-    computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
-
-    if (playerScore === 5) {
-        playerScoreDisplay.textContent = `Player Score: 5`;
-    }
-
-    if (computerScore === 5) {
-        computerScoreDisplay.textContent = `Computer Score: 5`;
-    }   
+    computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;  
 }
 
 // function 5 playGame function
@@ -84,14 +75,15 @@ function playGame(playerChoice) {
     determineWinner(playerChoice, computerChoice);
     updateScore();
 
+
     if (playerScore === 5 || computerScore ===5) {
         
         if (playerScore>computerScore) {
-            roundWinner.textContent = `You win!, game`;
+            roundWinner.textContent = `***Congratulations, you win the game!***`;
         }else if (playerScore<computerScore) {
-            roundWinner.textContent = ` You lose!, game`;
+            roundWinner.textContent = `***Ooh sorry, you lose the game!***`;
         }else {
-            roundWinner.textContent = `It's a draw`;
+            roundWinner.textContent = `***It's a draw***`;
         }
 
         resetScores();
