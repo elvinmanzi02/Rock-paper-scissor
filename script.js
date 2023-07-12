@@ -1,10 +1,4 @@
-// 1 create funtion to get computer choice
-// 2 create function to determine winner
-// 3 create function to play game
-// 4 using while loop to iterate until score be 5 points
-// 5 using if clause to determine someone who win the game 
-
-// 1 create funtion to get computer choice
+// 1 function for computer to randomly choose
 
 function getComputerChoice() {
     const choices = ["Rock", "Paper", "Scissor"];
@@ -12,12 +6,10 @@ function getComputerChoice() {
     return choices[randomIndex];
 }
 
-// 2 create function to determine winner
+// declaration of variables that will be needed
 
 let playerScore = 0;
 let computerScore = 0;
-
-// declarations
 
 let playerScoreDisplay = document.querySelector("#playerScoreDisplay");
 let computerScoreDisplay = document.querySelector("#computerScoreDisplay");
@@ -42,7 +34,7 @@ rockBtn.addEventListener("click", () => {
     playGame("Rock");
 });
 
-// function 1, determine winner
+// function 2 for determining winner
 
 function determineWinner(playerChoice, computerChoice) {
     if (playerChoice === computerChoice) {
@@ -58,22 +50,54 @@ function determineWinner(playerChoice, computerChoice) {
         computerScore++;
         winner.textContent =`Oops, you lose! ${computerChoice} beats ${playerChoice}`;
     }
+
 }
 
-// function 2, update score
+// functon 3 reset function 
+
+function resetScores() {
+    playerScore = 0;
+    computerScore = 0;
+    updateScore();
+}
+
+// function 4, update score
 
 function updateScore() {
     playerScoreDisplay.textContent = `Player Score: ${playerScore}`;
     computerScoreDisplay.textContent = `Computer Score: ${computerScore}`;
+
+    if (playerScore === 5) {
+        playerScoreDisplay.textContent = `Player Score: 5`;
+    }
+
+    if (computerScore === 5) {
+        computerScoreDisplay.textContent = `Computer Score: 5`;
+    }   
 }
 
-// function 3, playGame 
+// function 5 playGame function
 
 function playGame(playerChoice) {
 
     const computerChoice = getComputerChoice();
     determineWinner(playerChoice, computerChoice);
     updateScore();
+
+    if (playerScore === 5 || computerScore ===5) {
+        
+        if (playerScore>computerScore) {
+            roundWinner.textContent = `You win!, game`;
+        }else if (playerScore<computerScore) {
+            roundWinner.textContent = ` You lose!, game`;
+        }else {
+            roundWinner.textContent = `It's a draw`;
+        }
+
+        resetScores();
+        return;
+    }
+    roundWinner.textContent = '';
 }
 
 playGame(playerChoice); 
